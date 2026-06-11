@@ -292,7 +292,6 @@ C:\Users\Public\Documents\AxiomAnalysisSuite\Output\<Demo_CEL_file_or_actual_CEL
 └── genotyping_cel_files
 ```
 
-이 구조에서 `genotyping_cel_files`는 template 준비 후 삭제합니다.
 
 ---
 
