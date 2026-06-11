@@ -456,7 +456,7 @@ scripts/cnv_pipeline/
 실행 전 현재 경로와 파일 구성을 확인합니다.
 
 ```bash
-cd /BiO/Pangenomics_master_files_260610
+cd /Pangenomics_master_files_260610
 pwd
 ls -lh
 ```
