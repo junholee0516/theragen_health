@@ -293,7 +293,6 @@ C:\Users\Public\Documents\AxiomAnalysisSuite\Output\<Demo_CEL_file_or_actual_CEL
 └── genotyping_cel_files
 ```
 
-In this structure, `genotyping_cel_files` should be removed after preparing the template files.
 
 ---
 
