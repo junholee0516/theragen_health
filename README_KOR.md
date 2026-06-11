@@ -38,7 +38,7 @@ Pangenomics_master_files_260610/
 `apt_2.12.0_linux_64_x86_binaries.zip`은 다운로드한 APT 압축 파일입니다.
 `apt_2.12.0_linux_64_x86_binaries/`는 압축 해제 후 생성되는 APT 실행 파일 폴더입니다.
 
-아래 파일들은 template 준비 후 삭제하는 것을 기준으로 합니다.
+아래 파일들은 input template 준비 후 삭제하는 것을 기준으로 합니다.
 
 ```text
 genotyping_cel_files
@@ -76,7 +76,7 @@ CNV pipeline 실행을 위해 아래 항목이 필요합니다.
 
 * CEL 파일은 Axiom Analysis Suite에서 분석할 때 사용합니다.
 * AxAS에서 RUN 중 또는 RUN 후 생성된 `Output` 폴더를 `input/axas_template_files/` 폴더로 복사하여 사용합니다.
-* 단, `genotyping_cel_files`, `sample_info.bin`, `AxiomHMM.cnv.a5`는 template 준비 후 삭제합니다.
+* 단, `genotyping_cel_files`, `sample_info.bin`, `AxiomHMM.cnv.a5`는 input template 준비 후 삭제합니다.
 
 ---
 
@@ -292,6 +292,36 @@ C:\Users\Public\Documents\AxiomAnalysisSuite\Output\<Demo_CEL_file_or_actual_CEL
 └── genotyping_cel_files
 ```
 
+`genotyping_cel_files`는 pipeline 실행 과정에서 자동으로 생성됩니다.
+따라서 input template 파일을 준비할 때 아래 파일은 삭제합니다.
+
+```text
+Pangenomics_master_files_260610/input/axas_template_files/genotyping_cel_files
+```
+
+삭제 후 최종 구조는 아래와 같습니다.
+
+```text
+Pangenomics_master_files_260610/
+├── Axiom_PangenomiX.r1/
+├── apt_2.12.0_linux_64_x86_binaries.zip
+├── apt_2.12.0_linux_64_x86_binaries/
+├── scripts/
+│   └── cnv_pipeline/
+├── input/
+│   └── axas_template_files/
+│       ├── AxiomAnalysisSuiteData/
+│       ├── CNData/
+│       ├── Logs/
+│       ├── QC/
+│       ├── snpLists/
+│       ├── Temp/
+│       ├── AxiomGT1.calls.txt
+│       ├── AxiomGT1.confidences.txt
+│       ├── AxiomGT1.report.txt
+│       └── AxiomGT1.summary.a5
+└── README.md
+```
 
 ---
 
@@ -312,7 +342,8 @@ AxiomAnalysisSuiteData/
 └── user_colors.bin
 ```
 
-template 준비 시 `sample_info.bin`을 삭제합니다.
+`sample_info.bin`은 pipeline 실행 과정에서 새로 생성됩니다.
+따라서 input template 파일을 준비할 때 `sample_info.bin`을 삭제합니다.
 
 최종 구조는 아래와 같습니다.
 
