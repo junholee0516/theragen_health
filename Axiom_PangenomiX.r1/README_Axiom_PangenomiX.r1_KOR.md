@@ -1,4 +1,4 @@
-5. Axiom_PangenomiX.r1 Library Package
+## 5. Axiom_PangenomiX.r1 Library Package
 
 The Axiom_PangenomiX.r1 library package is required for PangenomiX Chip CNV analysis.
 
