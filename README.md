@@ -1,16 +1,15 @@
 # Pangenomics_master_files_260610
 
-This repository contains master files for testing and managing the PangenomiX Chip-based CNV analysis pipeline.
+This project contains master files for testing and managing the PangenomiX Chip-based CNV analysis pipeline.
 
-This repository is organized around `scripts/cnv_pipeline`.
-It is used to manage PangenomiX CNV analysis scripts, prepare the APT-based command line analysis environment, and generate files that can be uploaded to Axiom Analysis Suite based on APT output.
+This document describes the structure used to manage PangenomiX CNV analysis scripts, prepare the APT-based command line analysis environment, and generate files that can be uploaded to Axiom Analysis Suite based on APT output.
 
 Date: 2026.06.11
 Author: Junho Lee
 
 ---
 
-## 1. Repository Structure
+## 1. Directory Structure
 
 The recommended directory structure is shown below.
 
@@ -32,19 +31,26 @@ Pangenomics_master_files_260610/
 │       ├── AxiomGT1.calls.txt
 │       ├── AxiomGT1.confidences.txt
 │       ├── AxiomGT1.report.txt
-│       ├── AxiomGT1.summary.a5
-│       └── genotyping_cel_files
+│       └── AxiomGT1.summary.a5
 └── README.md
 ```
 
 `apt_2.12.0_linux_64_x86_binaries.zip` is the downloaded APT package.
 `apt_2.12.0_linux_64_x86_binaries/` is the extracted APT binary directory.
 
+The following files should be removed after preparing the template files.
+
+```text
+genotyping_cel_files
+AxiomAnalysisSuiteData/sample_info.bin
+CNData/AxiomHMM.cnv.a5
+```
+
 ---
 
 ## 2. Purpose
 
-This repository is used to organize the PangenomiX CNV analysis environment and to generate Axiom Analysis Suite upload-compatible files from APT-based command line analysis results.
+This project is used to organize the PangenomiX CNV analysis environment and to generate Axiom Analysis Suite upload-compatible files from APT-based command line analysis results.
 
 The main purposes are:
 
@@ -69,9 +75,8 @@ The following software and files are required to run the CNV pipeline.
 Notes:
 
 * CEL files are used when running analysis in Axiom Analysis Suite.
-* It is recommended not to upload CEL files directly to the repository.
 * The `Output` folder generated during or after an AxAS run should be copied into `input/axas_template_files/`.
-* Before uploading files to a public repository, check whether sample names, specimen information, or internal analysis results are included.
+* However, `genotyping_cel_files`, `sample_info.bin`, and `AxiomHMM.cnv.a5` should be removed after preparing the template files.
 
 ---
 
@@ -221,10 +226,18 @@ C:\Users\Public\Documents\AxiomAnalysisSuite\Output\<Demo_CEL_file_or_actual_CEL
 `<Demo_CEL_file_or_actual_CEL_file_name>` is not a fixed folder name.
 It depends on the demo CEL file, actual CEL file, or analysis name used in Axiom Analysis Suite.
 
-Copy the files and folders from this AxAS Output folder into the following repository location.
+Copy the files and folders from this AxAS Output folder into the following project location.
 
 ```text
 Pangenomics_master_files_260610/input/axas_template_files/
+```
+
+After copying, remove the following files.
+
+```text
+Pangenomics_master_files_260610/input/axas_template_files/genotyping_cel_files
+Pangenomics_master_files_260610/input/axas_template_files/AxiomAnalysisSuiteData/sample_info.bin
+Pangenomics_master_files_260610/input/axas_template_files/CNData/AxiomHMM.cnv.a5
 ```
 
 The final input structure should look like this.
@@ -234,7 +247,14 @@ Pangenomics_master_files_260610/
 └── input/
     └── axas_template_files/
         ├── AxiomAnalysisSuiteData/
+        │   ├── cel_headers
+        │   ├── AnalysisConfiguration.threshold_settings
+        │   ├── AnalysisConfiguration.analysis_settings
+        │   ├── Configuration
+        │   ├── batch_info
+        │   └── user_colors.bin
         ├── CNData/
+        │   └── AxiomHMM.report
         ├── Logs/
         ├── QC/
         ├── snpLists/
@@ -242,8 +262,7 @@ Pangenomics_master_files_260610/
         ├── AxiomGT1.calls.txt
         ├── AxiomGT1.confidences.txt
         ├── AxiomGT1.report.txt
-        ├── AxiomGT1.summary.a5
-        └── genotyping_cel_files
+        └── AxiomGT1.summary.a5
 ```
 
 The following four files are generated during the AxAS run and may be automatically removed after the analysis is completed.
@@ -274,11 +293,15 @@ C:\Users\Public\Documents\AxiomAnalysisSuite\Output\<Demo_CEL_file_or_actual_CEL
 └── genotyping_cel_files
 ```
 
+In this structure, `genotyping_cel_files` should be removed after preparing the template files.
+
 ---
 
 ## 9. AxiomAnalysisSuiteData Folder
 
 The `AxiomAnalysisSuiteData` folder contains AxAS analysis settings and sample-related information.
+
+The original AxAS Output structure is shown below.
 
 ```text
 AxiomAnalysisSuiteData/
@@ -291,10 +314,19 @@ AxiomAnalysisSuiteData/
 └── user_colors.bin
 ```
 
-Notes:
+When preparing the template files, remove `sample_info.bin`.
 
-* `sample_info.bin` may contain sample-related information.
-* Before uploading to a public GitHub repository, confirm whether internal sample information is included.
+The final structure should look like this.
+
+```text
+AxiomAnalysisSuiteData/
+├── cel_headers
+├── AnalysisConfiguration.threshold_settings
+├── AnalysisConfiguration.analysis_settings
+├── Configuration
+├── batch_info
+└── user_colors.bin
+```
 
 ---
 
@@ -302,30 +334,26 @@ Notes:
 
 The `CNData` folder contains CNV-related output files.
 
+The original AxAS Output structure is shown below.
+
 ```text
 CNData/
 ├── AxiomHMM.cnv.a5
 └── AxiomHMM.report
 ```
 
-Important file:
+`AxiomHMM.cnv.a5` is very large and can be regenerated during analysis.
 
-```text
-AxiomHMM.cnv.a5
-```
-
-This file is very large and can be regenerated during analysis.
-
-Therefore, after preparing the input example files, this file can be removed before uploading to GitHub.
+Therefore, remove the following file when preparing the input template files.
 
 ```text
 Pangenomics_master_files_260610/input/axas_template_files/CNData/AxiomHMM.cnv.a5
 ```
 
-After removing `AxiomHMM.cnv.a5`, the remaining structure is:
+After removing `AxiomHMM.cnv.a5`, the final structure should look like this.
 
 ```text
-Pangenomics_master_files_260610/input/axas_template_files/CNData/
+CNData/
 └── AxiomHMM.report
 ```
 
@@ -361,13 +389,6 @@ The `QC` folder may be generated but can be empty.
 QC/
 ```
 
-GitHub does not track empty folders.
-To keep this folder in the repository, add a `.gitkeep` file.
-
-```bash
-touch input/axas_template_files/QC/.gitkeep
-```
-
 ---
 
 ## 13. snpLists Folder
@@ -376,12 +397,6 @@ The `snpLists` folder may also be generated but can be empty.
 
 ```text
 snpLists/
-```
-
-To keep this folder in the repository, add a `.gitkeep` file.
-
-```bash
-touch input/axas_template_files/snpLists/.gitkeep
 ```
 
 ---
@@ -475,58 +490,29 @@ Before running the pipeline, confirm the following items.
 
 ---
 
-## 17. GitHub Upload Notes
+## 17. Input Template File Cleanup
 
-Before uploading to GitHub, check the following file.
+After preparing the `input/axas_template_files/` folder, remove the following files.
 
 ```text
+input/axas_template_files/genotyping_cel_files
+input/axas_template_files/AxiomAnalysisSuiteData/sample_info.bin
 input/axas_template_files/CNData/AxiomHMM.cnv.a5
 ```
 
-`AxiomHMM.cnv.a5` is very large, so it is recommended to exclude or remove it before uploading to GitHub.
-
-Example removal command:
+Example removal commands:
 
 ```bash
+rm -f input/axas_template_files/genotyping_cel_files
+rm -f input/axas_template_files/AxiomAnalysisSuiteData/sample_info.bin
 rm -f input/axas_template_files/CNData/AxiomHMM.cnv.a5
-```
-
-Add `.gitkeep` files to keep empty folders.
-
-```bash
-touch input/axas_template_files/QC/.gitkeep
-touch input/axas_template_files/snpLists/.gitkeep
-```
-
-Example GitHub upload commands:
-
-```bash
-git status
-
-git add README.md
-git add scripts/cnv_pipeline/
-git add input/axas_template_files/
-
-git commit -m "Add PangenomiX CNV pipeline files"
-git push origin main
-```
-
-Before uploading to a public repository, carefully check the following files.
-
-```text
-sample_info.bin
-genotyping_cel_files
-*.CEL
-AxiomHMM.cnv.a5
-Internal confidential files
-Files containing actual sample names or personal information
 ```
 
 ---
 
 ## 18. Notes
 
-This repository is intended for organizing and testing the PangenomiX Chip CNV analysis pipeline.
+This project is intended for organizing and testing the PangenomiX Chip CNV analysis pipeline.
 
 Axiom Analysis Suite, APT, and the Axiom_PangenomiX.r1 library package are software and library resources provided by Thermo Fisher Scientific.
 
