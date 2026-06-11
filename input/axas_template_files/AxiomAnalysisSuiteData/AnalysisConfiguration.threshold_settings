@@ -1,0 +1,1898 @@
+{
+  "Version": "1.1.3",
+  "is_default": false,
+  "categories": [
+    {
+      "name": "sample_qc",
+      "display": "Sample QC",
+      "thresholds": [
+        {
+          "Name": "axiom_dishqc_DQC",
+          "type": "float",
+          "display": "DQC",
+          "min_value": 0.0,
+          "max_value": 1.0,
+          "default_value": "0.82",
+          "current_value": "0.82",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "A sample’s dish QC value must be greater than or equal to 'DQC' to pass sample QC.",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": false
+        },
+        {
+          "Name": "qc_call_rate",
+          "type": "float",
+          "display": "QC call_rate",
+          "min_value": 0.0,
+          "max_value": 100.0,
+          "default_value": "97",
+          "current_value": "97",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "A sample’s call rate value must be greater than or equal to 'QC call_rate' to pass genotyping QC.",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": false
+        },
+        {
+          "Name": "plate_qc_average_call_rate_warning",
+          "type": "float",
+          "display": "plate_qc_average_call_rate_warning",
+          "min_value": 0.0,
+          "max_value": 100.0,
+          "default_value": "99",
+          "current_value": "99",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "",
+          "is_visible": false,
+          "enabled": true,
+          "required": true,
+          "advanced": false
+        },
+        {
+          "Name": "plate_qc_averagecallrate",
+          "type": "float",
+          "display": "Average call rate for passing samples",
+          "min_value": 0.0,
+          "max_value": 100.0,
+          "default_value": "98.5",
+          "current_value": "98.5",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "A plate’s average QC call rate of passing samples must be greater than or equal to this number to pass plate QC.",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": false
+        },
+        {
+          "Name": "plate_qc_percentsamplespassed",
+          "type": "float",
+          "display": "Percent of passing samples",
+          "min_value": 0.0,
+          "max_value": 100.0,
+          "default_value": "95",
+          "current_value": "95",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "If a plate’s percent of passing samples is smaller than this number, all samples on the plate will show a warning in the Sample Table.",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        }
+      ],
+      "workflowKeys": [
+        "sample_qc",
+        "automated_qc",
+        "initial_copynumber_ref_creation",
+        "best_practices_copynumber_ref_creation",
+        "best_practices_copynumber_ref_creation_step2"
+      ]
+    },
+    {
+      "name": "cn_sample_qc",
+      "display": "CN QC",
+      "thresholds": [
+        {
+          "Name": "mapd-max",
+          "type": "float",
+          "display": "MAPD",
+          "min_value": 0.0,
+          "max_value": 1.0,
+          "default_value": "0.35",
+          "current_value": "0.35",
+          "operand": "≤",
+          "operands": [
+            "≤"
+          ],
+          "description": "Samples with Median Absolute Pairwise Difference of log2ratio signals of adjacent copy number (CN) probesets greater than this value will fail sample CN QC, unless MAPDc is computed.",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": false
+        },
+        {
+          "Name": "mapdc-max",
+          "type": "float",
+          "display": "MAPDc",
+          "min_value": 0.0,
+          "max_value": 1.0,
+          "default_value": "0.35",
+          "current_value": "0.35",
+          "operand": "≤",
+          "operands": [
+            "≤"
+          ],
+          "description": "Samples with corrected Median Absolute Pairwise Difference of log2ratio signals of adjacent copy number (CN) probesets greater than this value will fail sample CN QC. MAPDc may be computed if control samples are used for plate correction.",
+          "is_visible": false,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "waviness-sd-max",
+          "type": "float",
+          "display": "Waviness SD",
+          "min_value": 0.0,
+          "max_value": 1.0,
+          "default_value": "0.1",
+          "current_value": "0.1",
+          "operand": "≤",
+          "operands": [
+            "≤"
+          ],
+          "description": "Samples with Waviness Standard Deviation of log2 ratio signals of copy number (CN) probesets greater than this value will fail sample CN QC, unless Waviness SDc is computed.",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": false
+        },
+        {
+          "Name": "waviness-sdc-max",
+          "type": "float",
+          "display": "Waviness SDc",
+          "min_value": 0.0,
+          "max_value": 1.0,
+          "default_value": "0.1",
+          "current_value": "0.1",
+          "operand": "≤",
+          "operands": [
+            "≤"
+          ],
+          "description": "Samples with corrected Waviness Standard Deviation of log2 ratio signals of copy number (CN) probesets greater than this value will fail sample CN QC. Waviness SDc may be computed if control samples are used for plate correction.",
+          "is_visible": false,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        }
+      ],
+      "workflowKeys": [
+        "automated_qc",
+        "probeset_genotyping",
+        "copy_number_discovery",
+        "copy_number_fixed",
+        "initial_copynumber_ref_creation",
+        "best_practices_copynumber_ref_creation",
+        "best_practices_copynumber_ref_creation_step2"
+      ]
+    },
+    {
+      "name": "cn_discovery_region_qc",
+      "display": "CN Region QC",
+      "thresholds": [
+        {
+          "Name": "seg-min-bases-CN-zero",
+          "type": "float",
+          "display": "seg-min-bases-CN-zero",
+          "min_value": 0.0,
+          "max_value": 2.14748365E+09,
+          "default_value": "25000",
+          "current_value": "25000",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "Minimum size in bases for segments that report copy number 0",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": false
+        },
+        {
+          "Name": "seg-min-bases-CN-one",
+          "type": "float",
+          "display": "seg-min-bases-CN-one",
+          "min_value": 0.0,
+          "max_value": 2.14748365E+09,
+          "default_value": "50000",
+          "current_value": "50000",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "Minimum size in bases for segments that report copy number 1",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": false
+        },
+        {
+          "Name": "seg-min-bases-CN-two",
+          "type": "float",
+          "display": "seg-min-bases-CN-two",
+          "min_value": 0.0,
+          "max_value": 2.14748365E+09,
+          "default_value": "100000",
+          "current_value": "100000",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "Minimum size in bases for segments that report copy number 2",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": false
+        },
+        {
+          "Name": "seg-min-bases-CN-three",
+          "type": "float",
+          "display": "seg-min-bases-CN-three",
+          "min_value": 0.0,
+          "max_value": 2.14748365E+09,
+          "default_value": "100000",
+          "current_value": "100000",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "Minimum size in bases for segments that report copy number 3",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": false
+        },
+        {
+          "Name": "seg-min-bases-CN-fourormore",
+          "type": "float",
+          "display": "seg-min-bases-CN-fourormore",
+          "min_value": 0.0,
+          "max_value": 2.14748365E+09,
+          "default_value": "100000",
+          "current_value": "100000",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "Minimum size in bases for segments that report copy number 4 or more",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": false
+        },
+        {
+          "Name": "seg-min-probesets-CN-zero",
+          "type": "float",
+          "display": "seg-min-probesets-CN-zero",
+          "min_value": 0.0,
+          "max_value": 2.14748365E+09,
+          "default_value": "25",
+          "current_value": "25",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "Minimum size in probesets for segments that report copy number 0",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": false
+        },
+        {
+          "Name": "seg-min-probesets-CN-one",
+          "type": "float",
+          "display": "seg-min-probesets-CN-one",
+          "min_value": 0.0,
+          "max_value": 2.14748365E+09,
+          "default_value": "50",
+          "current_value": "50",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "Minimum size in probesets for segments that report copy number 1",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": false
+        },
+        {
+          "Name": "seg-min-probesets-CN-two",
+          "type": "float",
+          "display": "seg-min-probesets-CN-two",
+          "min_value": 0.0,
+          "max_value": 2.14748365E+09,
+          "default_value": "100",
+          "current_value": "100",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "Minimum size in probesets for segments that report copy number 2",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": false
+        },
+        {
+          "Name": "seg-min-probesets-CN-three",
+          "type": "float",
+          "display": "seg-min-probesets-CN-three",
+          "min_value": 0.0,
+          "max_value": 2.14748365E+09,
+          "default_value": "100",
+          "current_value": "100",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "Minimum size in probesets for segments that report copy number 3",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": false
+        },
+        {
+          "Name": "seg-min-probesets-CN-fourormore",
+          "type": "float",
+          "display": "seg-min-probesets-CN-fourormore",
+          "min_value": 0.0,
+          "max_value": 2.14748365E+09,
+          "default_value": "100",
+          "current_value": "100",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "Minimum size in probesets for segments that report copy number 4 or more",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": false
+        }
+      ],
+      "workflowKeys": [
+        "copy_number_discovery"
+      ]
+    },
+    {
+      "name": "snp_qc",
+      "display": "SNP QC",
+      "thresholds": [
+        {
+          "Name": "species-type",
+          "type": "list-single",
+          "display": "species-type",
+          "min_value": 0.0,
+          "max_value": 0.0,
+          "default_value": "Human",
+          "current_value": "Human",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "Species type for the array",
+          "list": [
+            "Diploid",
+            "Human",
+            "Polyploid"
+          ],
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": false
+        },
+        {
+          "Name": "cr-cutoff",
+          "type": "float",
+          "display": "cr-cutoff",
+          "min_value": 0.0,
+          "max_value": 100.0,
+          "default_value": "95",
+          "current_value": "95",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "Minimum acceptable call rate",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": false
+        },
+        {
+          "Name": "fld-cutoff",
+          "type": "float",
+          "display": "fld-cutoff",
+          "min_value": 0.0,
+          "max_value": 100.0,
+          "default_value": "3.6",
+          "current_value": "3.6",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "For autosomal probesets, minimum acceptable FLD value for cluster separation",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": false
+        },
+        {
+          "Name": "het-so-cutoff",
+          "type": "float",
+          "display": "het-so-cutoff",
+          "min_value": -10.0,
+          "max_value": 10.0,
+          "default_value": "-0.1",
+          "current_value": "-0.1",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "Minimum acceptable value for the correctness of the Size (Y position) offset of the heterozygous cluster",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": false
+        },
+        {
+          "Name": "het-so-XChr-cutoff",
+          "type": "float",
+          "display": "het-so-XChr-cutoff",
+          "min_value": -10.0,
+          "max_value": 10.0,
+          "default_value": "-0.1",
+          "current_value": "-0.1",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "For probesets on the non-pseudoautosomal regions of chromosome X, the minimum acceptable value for the correctness of the Size (Y position) offset of the female heterozygous cluster",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "het-so-otv-cutoff",
+          "type": "float",
+          "display": "het-so-otv-cutoff",
+          "min_value": -10.0,
+          "max_value": 10.0,
+          "default_value": "-0.3",
+          "current_value": "-0.3",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "Minimum acceptable value for the correctness of the Size (Y position) offset of the heterozygous cluster, possibly indicating a fourth cluster below the heterozygous cluster (OTV)",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "hom-ro-1-cutoff",
+          "type": "float",
+          "display": "hom-ro-1-cutoff",
+          "min_value": -10.0,
+          "max_value": 10.0,
+          "default_value": "0.6",
+          "current_value": "0.6",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "Minimum acceptable value for the correctness of the Contrast (X position) of the homozygous clusters (Ratio Offset) when a probeset has 1 genotype cluster",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": false
+        },
+        {
+          "Name": "hom-ro-2-cutoff",
+          "type": "float",
+          "display": "hom-ro-2-cutoff",
+          "min_value": -10.0,
+          "max_value": 10.0,
+          "default_value": "0.3",
+          "current_value": "0.3",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "Minimum acceptable value for the correctness of the Contrast (X position) of the homozygous clusters (Ratio Offset) when a probeset has 2 genotype clusters",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": false
+        },
+        {
+          "Name": "hom-ro-3-cutoff",
+          "type": "float",
+          "display": "hom-ro-3-cutoff",
+          "min_value": -10.0,
+          "max_value": 10.0,
+          "default_value": "-0.9",
+          "current_value": "-0.9",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "Minimum acceptable value for the correctness of the Contrast (X position) of the homozygous clusters (Ratio Offset) when a probeset has 3 genotype clusters",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": false
+        },
+        {
+          "Name": "hom-ro",
+          "type": "list-single",
+          "display": "hom-ro",
+          "min_value": 0.0,
+          "max_value": 0.0,
+          "default_value": "true",
+          "current_value": "true",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "Flag indicating whether the metric HomRO is used in classification",
+          "list": [
+            "true",
+            "false"
+          ],
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "num-minor-allele-cutoff",
+          "type": "float",
+          "display": "num-minor-allele-cutoff",
+          "min_value": 1.0,
+          "max_value": 10000.0,
+          "default_value": "2",
+          "current_value": "2",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "Minimum minor allele count for categorizing a probeset as PolyHighResolution",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "hom-ro-hap-1-cutoff",
+          "type": "float",
+          "display": "hom-ro-hap-1-cutoff",
+          "min_value": -10.0,
+          "max_value": 10.0,
+          "default_value": "0.1",
+          "current_value": "0.1",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "For autosomal probesets, minimum acceptable value for the correctness of the Contrast (X position) of the haploid clusters from 0 (Ratio Offset) when a probeset has 1 haploid genotype cluster",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "hom-ro-hap-1-XChr-cutoff",
+          "type": "float",
+          "display": "hom-ro-hap-1-XChr-cutoff",
+          "min_value": -10.0,
+          "max_value": 10.0,
+          "default_value": "-2.0",
+          "current_value": "-2.0",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "For non-PAR X probesets, minimum acceptable value for the correctness of the Contrast (X position) of the haploid clusters from 0 (Ratio Offset) when a probeset has 1 haploid genotype cluster",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "hom-ro-hap-1-MTChr-cutoff",
+          "type": "float",
+          "display": "hom-ro-hap-1-MTChr-cutoff",
+          "min_value": -10.0,
+          "max_value": 10.0,
+          "default_value": "-1.5",
+          "current_value": "-1.5",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "For mitochondrial probesets, minimum acceptable value for the correctness of the Contrast (X position) of the haploid clusters from 0 (Ratio Offset) when a probeset has 1 haploid genotype cluster",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "hom-ro-hap-2-cutoff",
+          "type": "float",
+          "display": "hom-ro-hap-2-cutoff",
+          "min_value": -10.0,
+          "max_value": 10.0,
+          "default_value": "-0.9",
+          "current_value": "-0.9",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "For autosomal probesets, minimum acceptable value for the correctness of the Contrast (X position) of the haploid clusters from 0 (Ratio Offset) when a probeset has 2 haploid genotype clusters",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "hom-ro-hap-2-XChr-cutoff",
+          "type": "float",
+          "display": "hom-ro-hap-2-XChr-cutoff",
+          "min_value": -10.0,
+          "max_value": 10.0,
+          "default_value": "-2.0",
+          "current_value": "-2.0",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "For non-PAR X probesets, minimum acceptable value for the correctness of the Contrast (X position) of the haploid clusters from 0 (Ratio Offset) when a probeset has 2 haploid genotype clusters",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "hom-ro-hap-2-MTChr-cutoff",
+          "type": "float",
+          "display": "hom-ro-hap-2-MTChr-cutoff",
+          "min_value": -10.0,
+          "max_value": 10.0,
+          "default_value": "-1.5",
+          "current_value": "-1.5",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "For mitochondrial probesets, minimum acceptable value for the correctness of the Contrast (X position) of the haploid clusters from 0 (Ratio Offset) when a probeset has 2 haploid genotype clusters",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "hom-hap-X-cutoff",
+          "type": "float",
+          "display": "hom-hap-X-cutoff",
+          "min_value": -10.0,
+          "max_value": 10.0,
+          "default_value": "-1",
+          "current_value": "-1",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "For autosomal probesets, minimum acceptable value for the correctness of the Contrast (X position) of the haploid clusters relative to the homozygous clusters",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "hom-hap-Y-lower-cutoff",
+          "type": "float",
+          "display": "hom-hap-Y-lower-cutoff",
+          "min_value": -10.0,
+          "max_value": 10.0,
+          "default_value": "1",
+          "current_value": "1",
+          "operand": "≤",
+          "operands": [
+            "≤"
+          ],
+          "description": "For autosomal probesets, maximum acceptable value for the correctness of the Size (Y position) of the haploid clusters relative to homozygous clusters",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "hom-hap-Y-upper-cutoff",
+          "type": "float",
+          "display": "hom-hap-Y-upper-cutoff",
+          "min_value": -10.0,
+          "max_value": 10.0,
+          "default_value": "1",
+          "current_value": "1",
+          "operand": "≤",
+          "operands": [
+            "≤"
+          ],
+          "description": "For autosomal probesets, maximum acceptable value for the correctness of the Size (Y position) of the haploid clusters relative to homozygous clusters",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "CN0-hap-X-cutoff",
+          "type": "float",
+          "display": "CN0-hap-X-cutoff",
+          "min_value": -10.0,
+          "max_value": 10.0,
+          "default_value": "-1",
+          "current_value": "-1",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "For autosomal probesets, minimum acceptable value for the correctness of the Contrast (X position) of the ZeroCN cluster relative to the haploid clusters",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "CN0-hap-Y-cutoff",
+          "type": "float",
+          "display": "CN0-hap-Y-cutoff",
+          "min_value": -10.0,
+          "max_value": 10.0,
+          "default_value": "-1",
+          "current_value": "-1",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "For autosomal probesets, minimum acceptable value for the correctness of the Size (Y position) of the ZeroCN cluster relative to the haploid clusters",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "CN0-dip-X-cutoff",
+          "type": "float",
+          "display": "CN0-dip-X-cutoff",
+          "min_value": -10.0,
+          "max_value": 10.0,
+          "default_value": "-1",
+          "current_value": "-1",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "For autosomal probesets, minimum acceptable value for the correctness of the Contrast (X position) of the ZeroCN cluster relative to the diploid clusters",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "CN0-dip-Y-cutoff",
+          "type": "float",
+          "display": "CN0-dip-Y-cutoff",
+          "min_value": -10.0,
+          "max_value": 10.0,
+          "default_value": "-1",
+          "current_value": "-1",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "For autosomal probesets, minimum acceptable value for the correctness of the Size (Y position) of the ZeroCN cluster relative to the diploid clusters",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "aaf-XChr-cut",
+          "type": "float",
+          "display": "aaf-XChr-cut",
+          "min_value": -10.0,
+          "max_value": 10.0,
+          "default_value": "0.36",
+          "current_value": "0.36",
+          "operand": "<",
+          "operands": [
+            "<"
+          ],
+          "description": "For non-PAR X probesets, maximum acceptable difference in male versus female A-allele frequency. Any probeset that fails is categorized as Other.",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "fld-XChr-cut",
+          "type": "float",
+          "display": "fld-XChr-cut",
+          "min_value": 0.0,
+          "max_value": 100.0,
+          "default_value": "4",
+          "current_value": "4",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "For non-PAR X probesets, minimum acceptable FLD value for diploid cluster separation",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "homfld-XChr-cut",
+          "type": "float",
+          "display": "homfld-XChr-cut",
+          "min_value": 0.0,
+          "max_value": 100.0,
+          "default_value": "6.5",
+          "current_value": "6.5",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "For non-PAR X probesets, minimum acceptable FLD value for male haploid cluster separation",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "homfld-YChr-cut",
+          "type": "float",
+          "display": "homfld-YChr-cut",
+          "min_value": 0.0,
+          "max_value": 100.0,
+          "default_value": "6.5",
+          "current_value": "6.5",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "For Y probesets, minimum acceptable FLD value for male haploid cluster separation",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "min-YChr-samples-cut",
+          "type": "float",
+          "display": "min-YChr-samples-cut",
+          "min_value": 0.0,
+          "max_value": 65535.0,
+          "default_value": "5",
+          "current_value": "5",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "For Y probesets, minimum count of called samples of each gender needed for the Euclidean distance test between male and female genotype clusters",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "priority-order",
+          "type": "list-all",
+          "display": "priority-order",
+          "min_value": 0.0,
+          "max_value": 0.0,
+          "default_value": "PolyHighResolution, NoMinorHom, MonoHighResolution, OTV, UnexpectedGenotypeFreq, CallRateBelowThreshold, Other, OtherMA",
+          "current_value": "PolyHighResolution, NoMinorHom, MonoHighResolution, OTV, UnexpectedGenotypeFreq, CallRateBelowThreshold, Other, OtherMA",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "Priority order of probeset conversion types when performing probeset selection",
+          "list": [
+            "PolyHighResolution",
+            "NoMinorHom",
+            "MonoHighResolution",
+            "OTV",
+            "UnexpectedGenotypeFreq",
+            "CallRateBelowThreshold",
+            "Other",
+            "OtherMA"
+          ],
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "recommended",
+          "type": "check-list",
+          "display": "recommended",
+          "min_value": 0.0,
+          "max_value": 0.0,
+          "default_value": "PolyHighResolution, NoMinorHom, MonoHighResolution, Hemizygous",
+          "current_value": "PolyHighResolution, NoMinorHom, MonoHighResolution, Hemizygous",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "Probesets having ConversionTypes in this recommended set will be included in the recommended probeset list",
+          "list": [
+            "PolyHighResolution",
+            "NoMinorHom",
+            "OTV",
+            "MonoHighResolution",
+            "CallRateBelowThreshold",
+            "Hemizygous",
+            "UnexpectedGenotypeFreq"
+          ],
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": false
+        },
+        {
+          "Name": "y-restrict",
+          "type": "float",
+          "display": "y-restrict",
+          "min_value": -10.0,
+          "max_value": 10.0,
+          "default_value": "0.2",
+          "current_value": "0.2",
+          "operand": "≤",
+          "operands": [
+            "≤"
+          ],
+          "description": "Y-restrict is the maximum vertical distance 2 points in 2 clusters can be when matching up points for calculating the edge metric values BB_dis_x_adj and AA_dis_x_adj. Y-restrict is not used to set probeset ConversionType. It is only used during 'Regenerate SNP Metrics' when the 'Generate advanced metrics' option is selected.",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "min-genotype-freq-samples",
+          "type": "float",
+          "display": "min-genotype-freq-samples",
+          "min_value": 1.0,
+          "max_value": 65535.0,
+          "default_value": "20",
+          "current_value": "20",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "Minimum count of samples to support the genotype frequency p-value calculation. Requires a genotype frequency file.",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "genotype-p-value-cutoff",
+          "type": "float",
+          "display": "genotype-p-value-cutoff",
+          "min_value": 0.0,
+          "max_value": 1.0,
+          "default_value": "0.000001",
+          "current_value": "0.000001",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "Minimum p-value for a probeset to be recommended instead of UnexpectedGenotypeFrequency. Requires a genotype frequency file.",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        }
+      ],
+      "workflowKeys": [
+        "automated_qc",
+        "probeset_genotyping",
+        "snp_qc",
+        "dual"
+      ]
+    },
+    {
+      "name": "MA_SNP_qc",
+      "display": "Multiallelic SNP QC",
+      "thresholds": [
+        {
+          "Name": "hom-mma-cutoff",
+          "type": "float",
+          "display": "HomMMA-cutoff",
+          "min_value": 0.0,
+          "max_value": 65535.0,
+          "default_value": "10.0",
+          "current_value": "10.0",
+          "operand": ">",
+          "operands": [
+            ">"
+          ],
+          "description": "The minimum of the means for each multiallelic probeset allele's homozygous cluster.",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "fld-ma-cutoff",
+          "type": "float",
+          "display": "FLD-MA-cutoff",
+          "min_value": 0.0,
+          "max_value": 65535.0,
+          "default_value": "5.2",
+          "current_value": "5.2",
+          "operand": ">",
+          "operands": [
+            ">"
+          ],
+          "description": "For multiallelic probesets, the minimum acceptable average FLD value between all populated homozygous and heterozygous clusters.",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "fld-ma-2-cutoff",
+          "type": "float",
+          "display": "FLD-MA-2-cutoff",
+          "min_value": 0.0,
+          "max_value": 65535.0,
+          "default_value": "5.2",
+          "current_value": "5.2",
+          "operand": ">",
+          "operands": [
+            ">"
+          ],
+          "description": "For multiallelic probesets, minimum acceptable average FLD values between all populated homozygous and heterozygous clusters for probesets with only 2 alleles.",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "min-fld-ma-cutoff",
+          "type": "float",
+          "display": "Min-FLD-MA-cutoff",
+          "min_value": 0.0,
+          "max_value": 65535.0,
+          "default_value": "0.0",
+          "current_value": "0.0",
+          "operand": ">",
+          "operands": [
+            ">"
+          ],
+          "description": "For multiallelic probesets, the smallest acceptable minimum FLD value between all populated homozygous and heterozygous clusters.",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "min-fld-ma-2-cutoff",
+          "type": "float",
+          "display": "Min-FLD-MA-2-cutoff",
+          "min_value": 0.0,
+          "max_value": 65535.0,
+          "default_value": "0.0",
+          "current_value": "0.0",
+          "operand": ">",
+          "operands": [
+            ">"
+          ],
+          "description": "For multiallelic probesets, the smallest acceptable minimum FLD value between homozygous and heterozygous clusters for probesets with only 2 alleles.",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "het-so-ma-2-cutoff",
+          "type": "float",
+          "display": "HetSO-MA-2-cutoff",
+          "min_value": -10.0,
+          "max_value": 10.0,
+          "default_value": "-0.1",
+          "current_value": "-0.1",
+          "operand": ">",
+          "operands": [
+            ">"
+          ],
+          "description": "For multiallelic probesets, the minimum acceptable value for the Size Offset of heterozygous clusters for probesets with only 2 alleles.",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "hom-ro-ma-cutoff",
+          "type": "float",
+          "display": "HomRO-MA-cutoff",
+          "min_value": -10.0,
+          "max_value": 10.0,
+          "default_value": "0.5",
+          "current_value": "0.5",
+          "operand": ">",
+          "operands": [
+            ">"
+          ],
+          "description": "For multiallelic probesets,the minimum acceptable value for the Contrast (X position) of the homozygous clusters (Ratio Offset).",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "hom-ro-ma-2-cutoff",
+          "type": "float",
+          "display": "HomRO-MA-2-cutoff",
+          "min_value": -10.0,
+          "max_value": 10.0,
+          "default_value": "0.5",
+          "current_value": "0.5",
+          "operand": ">",
+          "operands": [
+            ">"
+          ],
+          "description": "For multiallelic probesets,the minimum acceptable value for the Contrast (X position) of the homozygous clusters (Ratio Offset) for probesets with 2 genotype clusters.",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "hom-ro-ma-1-cutoff",
+          "type": "float",
+          "display": "HomRO-MA-1-cutoff",
+          "min_value": -10.0,
+          "max_value": 10.0,
+          "default_value": "1.0",
+          "current_value": "1.0",
+          "operand": ">",
+          "operands": [
+            ">"
+          ],
+          "description": "For multiallelic probesets, the minimum acceptable value for the Contrast (X position) of the homozygous clusters (Ratio Offset) when a probeset has 1 genotype cluster.",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "priority-order-multi-allele",
+          "type": "list-all",
+          "display": "priority-order-MA",
+          "min_value": 0.0,
+          "max_value": 0.0,
+          "default_value": "PolyHighResolution, NoMinorHom, MonoHighResolution, Hemizygous, UnexpectedGenotypeFreq, CallRateBelowThreshold, Other, OtherMA",
+          "current_value": "PolyHighResolution, NoMinorHom, MonoHighResolution, Hemizygous, UnexpectedGenotypeFreq, CallRateBelowThreshold, Other, OtherMA",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "Priority order of probeset conversion types when performing probeset selection",
+          "list": [
+            "PolyHighResolution",
+            "NoMinorHom",
+            "MonoHighResolution",
+            "Hemizygous",
+            "UnexpectedGenotypeFrequency",
+            "CallRateBelowThreshold",
+            "Other",
+            "OtherMA"
+          ],
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "best-cr-ma-cutoff",
+          "type": "float",
+          "display": "Best-CR-MA-cutoff",
+          "min_value": 0.0,
+          "max_value": 100.0,
+          "default_value": "90.0",
+          "current_value": "90.0",
+          "operand": ">",
+          "operands": [
+            ">"
+          ],
+          "description": "The minimum Call Rate for selecting a best and recommended probeset from multiple probesets for a single multi_snp_id.",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        }
+      ],
+      "workflowKeys": [
+        "automated_qc",
+        "probeset_genotyping",
+        "snp_qc"
+      ]
+    },
+    {
+      "name": "ps_supplemental",
+      "display": "PS Supplemental",
+      "thresholds": [
+        {
+          "Name": "homfld-cut",
+          "type": "float",
+          "display": "homfld-cut",
+          "min_value": 0.0,
+          "max_value": 65535.0,
+          "default_value": "6.5",
+          "current_value": "6.5",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "Minimum acceptable FLD value for homozygous cluster separation",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "bb-varx-cut",
+          "type": "float",
+          "display": "bb-varx-cut",
+          "min_value": 0.0,
+          "max_value": 65535.0,
+          "default_value": "10.0",
+          "current_value": "10.0",
+          "operand": "≤",
+          "operands": [
+            "≤"
+          ],
+          "description": "Maximum acceptable Contrast (X position) variance for BB cluster. Not used if bb-varx-z-cut-enabled is true.",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "bb-vary-cut",
+          "type": "float",
+          "display": "bb-vary-cut",
+          "min_value": 0.0,
+          "max_value": 65535.0,
+          "default_value": "10.0",
+          "current_value": "10.0",
+          "operand": "≤",
+          "operands": [
+            "≤"
+          ],
+          "description": "Maximum acceptable Size (Y position) variance for BB cluster. Not used if bb-vary-z-cut-enabled is true.",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "ab-varx-cut",
+          "type": "float",
+          "display": "ab-varx-cut",
+          "min_value": 0.0,
+          "max_value": 65535.0,
+          "default_value": "10.0",
+          "current_value": "10.0",
+          "operand": "≤",
+          "operands": [
+            "≤"
+          ],
+          "description": "Maximum acceptable Contrast (X position) variance for AB cluster. Not used if ab-varx-z-cut-enabled is true.",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "ab-vary-cut",
+          "type": "float",
+          "display": "ab-vary-cut",
+          "min_value": 0.0,
+          "max_value": 65535.0,
+          "default_value": "10.0",
+          "current_value": "10.0",
+          "operand": "≤",
+          "operands": [
+            "≤"
+          ],
+          "description": "Maximum acceptable Size (Y position) variance for AB cluster. Not used if ab-vary-z-cut-enabled is true.",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "aa-varx-cut",
+          "type": "float",
+          "display": "aa-varx-cut",
+          "min_value": 0.0,
+          "max_value": 65535.0,
+          "default_value": "10.0",
+          "current_value": "10.0",
+          "operand": "≤",
+          "operands": [
+            "≤"
+          ],
+          "description": "Maximum acceptable Contrast (X position) variance for AA cluster. Not used if aa-varx-z-cut-enabled is true.",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "aa-vary-cut",
+          "type": "float",
+          "display": "aa-vary-cut",
+          "min_value": 0.0,
+          "max_value": 65535.0,
+          "default_value": "10.0",
+          "current_value": "10.0",
+          "operand": "≤",
+          "operands": [
+            "≤"
+          ],
+          "description": "Maximum acceptable Size (Y position) variance for AA cluster. Not used if aa-vary-z-cut-enabled is true.",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "bb-varx-z-cut-enabled",
+          "type": "list-single",
+          "display": "bb-varx-z-cut-enabled",
+          "min_value": 0.0,
+          "max_value": 0.0,
+          "default_value": "true",
+          "current_value": "true",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "If true, bb-varx-z-cut is used.",
+          "list": [
+            "true",
+            "false"
+          ],
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "bb-vary-z-cut-enabled",
+          "type": "list-single",
+          "display": "bb-vary-z-cut-enabled",
+          "min_value": 0.0,
+          "max_value": 0.0,
+          "default_value": "true",
+          "current_value": "true",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "If true, bb-vary-z-cut is used.",
+          "list": [
+            "true",
+            "false"
+          ],
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "ab-varx-z-cut-enabled",
+          "type": "list-single",
+          "display": "ab-varx-z-cut-enabled",
+          "min_value": 0.0,
+          "max_value": 0.0,
+          "default_value": "true",
+          "current_value": "true",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "If true, ab-varx-z-cut is used.",
+          "list": [
+            "true",
+            "false"
+          ],
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "ab-vary-z-cut-enabled",
+          "type": "list-single",
+          "display": "ab-vary-z-cut-enabled",
+          "min_value": 0.0,
+          "max_value": 0.0,
+          "default_value": "true",
+          "current_value": "true",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "If true, ab-vary-z-cut is used.",
+          "list": [
+            "true",
+            "false"
+          ],
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "aa-varx-z-cut-enabled",
+          "type": "list-single",
+          "display": "aa-varx-z-cut-enabled",
+          "min_value": 0.0,
+          "max_value": 0.0,
+          "default_value": "true",
+          "current_value": "true",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "If true, aa-varx-z-cut is used.",
+          "list": [
+            "true",
+            "false"
+          ],
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "aa-vary-z-cut-enabled",
+          "type": "list-single",
+          "display": "aa-vary-z-cut-enabled",
+          "min_value": 0.0,
+          "max_value": 0.0,
+          "default_value": "true",
+          "current_value": "true",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "If true, aa-vary-z-cut is used.",
+          "list": [
+            "true",
+            "false"
+          ],
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "bb-varx-z-cut",
+          "type": "float",
+          "display": "bb-varx-z-cut",
+          "min_value": 0.0,
+          "max_value": 65535.0,
+          "default_value": "3.0",
+          "current_value": "3.0",
+          "operand": "≤",
+          "operands": [
+            "≤"
+          ],
+          "description": "Maximum acceptable Contrast (X position) Z-score for BB cluster. Not used if bb-varx-z-cut-enabled is false.",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "bb-vary-z-cut",
+          "type": "float",
+          "display": "bb-vary-z-cut",
+          "min_value": 0.0,
+          "max_value": 65535.0,
+          "default_value": "3.0",
+          "current_value": "3.0",
+          "operand": "≤",
+          "operands": [
+            "≤"
+          ],
+          "description": "Maximum acceptable Size (Y position) Z-score for BB cluster. Not used if bb-vary-z-cut-enabled is false.",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "ab-varx-z-cut",
+          "type": "float",
+          "display": "ab-varx-z-cut",
+          "min_value": 0.0,
+          "max_value": 65535.0,
+          "default_value": "3.0",
+          "current_value": "3.0",
+          "operand": "≤",
+          "operands": [
+            "≤"
+          ],
+          "description": "Maximum acceptable Contrast (X position) Z-score for AB cluster. Not used if ab-varx-z-cut-enabled is false.",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "ab-vary-z-cut",
+          "type": "float",
+          "display": "ab-vary-z-cut",
+          "min_value": 0.0,
+          "max_value": 65535.0,
+          "default_value": "3.0",
+          "current_value": "3.0",
+          "operand": "≤",
+          "operands": [
+            "≤"
+          ],
+          "description": "Maximum acceptable Size (Y position) Z-score for AB cluster. Not used if ab-vary-z-cut-enabled is false.",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "aa-varx-z-cut",
+          "type": "float",
+          "display": "aa-varx-z-cut",
+          "min_value": 0.0,
+          "max_value": 65535.0,
+          "default_value": "3.0",
+          "current_value": "3.0",
+          "operand": "≤",
+          "operands": [
+            "≤"
+          ],
+          "description": "Maximum acceptable Contrast (X position) Z-score for AA cluster. Not used if aa-varx-z-cut-enabled is false.",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "aa-vary-z-cut",
+          "type": "float",
+          "display": "aa-vary-z-cut",
+          "min_value": 0.0,
+          "max_value": 65535.0,
+          "default_value": "3.0",
+          "current_value": "3.0",
+          "operand": "≤",
+          "operands": [
+            "≤"
+          ],
+          "description": "Maximum acceptable Size (Y position) Z-score for AA cluster. Not used if aa-vary-z-cut-enabled is false.",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "clustermin",
+          "type": "float",
+          "display": "clustermin",
+          "min_value": -65535.0,
+          "max_value": 65535.0,
+          "default_value": "5.0",
+          "current_value": "5.0",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "Minimum number of samples in a cluster for the new variance or Z-score value to be calculated",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "n-minor-hom-cut",
+          "type": "float",
+          "display": "n-minor-hom-cut",
+          "min_value": 0.0,
+          "max_value": 65535.0,
+          "default_value": "0.0",
+          "current_value": "0.0",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "Minimum number of minor hom samples for PolyHighResolution classification. PolyHighResolution probesets where the number of minor hom samples is less than n-minor-hom-cut are categorized as nMinorHom.",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "hetv-maf-cut",
+          "type": "float",
+          "display": "hetv-maf-cut",
+          "min_value": 0.0,
+          "max_value": 65535.0,
+          "default_value": "10.0",
+          "current_value": "10.0",
+          "operand": "<",
+          "operands": [
+            "<"
+          ],
+          "description": "Maximum acceptable heterozygosity parameter. PolyHighResolution probesets with het rate > MAF*hetv-maf-cut are categorized as UnexpectedHeterozygosity.",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "variance-class",
+          "type": "check-list",
+          "display": "variance-class",
+          "min_value": 0.0,
+          "max_value": 0.0,
+          "default_value": "PolyHighResolution",
+          "current_value": "PolyHighResolution",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "List of categories that supplemental filters are used on",
+          "list": [
+            "PolyHighResolution",
+            "NoMinorHom",
+            "MonoHighResolution",
+            "OTV",
+            "UnexpectedGenotypeFreq",
+            "CallRateBelowThreshold",
+            "Other",
+            "OtherMA"
+          ],
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        }
+      ],
+      "workflowKeys": [
+        "snp_qc"
+      ]
+    },
+    {
+      "name": "cn_ref_qc",
+      "display": "CN Reference QC",
+      "thresholds": [
+        {
+          "Name": "min-sample-count",
+          "type": "float",
+          "display": "Sample Count",
+          "min_value": 1.0,
+          "max_value": 1000.0,
+          "default_value": "88",
+          "current_value": "88",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "Minimum number of CEL files passing QC, for making a copy number reference.",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": false
+        },
+        {
+          "Name": "min-cnqc-pass-rate",
+          "type": "float",
+          "display": "CNQC Pass Rate",
+          "min_value": 0.0,
+          "max_value": 100.0,
+          "default_value": "98",
+          "current_value": "98",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "Minimum percentage of CEL files passing copy number QC thresholds, for the new copy number reference to pass QC.",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": false
+        },
+        {
+          "Name": "min-matched-samples-rate",
+          "type": "float",
+          "display": "Initial Matched Samples Rate",
+          "min_value": 1.0,
+          "max_value": 100.0,
+          "default_value": "90",
+          "current_value": "90",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "For Initial Copy Number Reference Creation, the minimum percentage CEL files matched to known samples",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "min-matched-wells-rate",
+          "type": "float",
+          "display": "Initial Matched Wells Rate",
+          "min_value": 1.0,
+          "max_value": 100.0,
+          "default_value": "90",
+          "current_value": "90",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "For Initial Copy Number Reference Creation, the minimum percentage of identified samples matched to expected plate location",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "max-plate-count",
+          "type": "float",
+          "display": "Initial Plate Count",
+          "min_value": 0.0,
+          "max_value": 1000.0,
+          "default_value": "1",
+          "current_value": "1",
+          "operand": "≤",
+          "operands": [
+            "≤"
+          ],
+          "description": "For Initial Copy Number Reference Creation, the maximum number of plate barcodes among the CEL files",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "max-scan-count",
+          "type": "float",
+          "display": "Initial Scan Count",
+          "min_value": 0.0,
+          "max_value": 1000.0,
+          "default_value": "1",
+          "current_value": "1",
+          "operand": "≤",
+          "operands": [
+            "≤"
+          ],
+          "description": "For Initial Copy Number Reference Creation, the maximum number of CEL files with the same barcode and well",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        }
+      ],
+      "workflowKeys": [
+        "initial_copynumber_ref_creation",
+        "best_practices_copynumber_ref_creation",
+        "best_practices_copynumber_ref_creation_step2"
+      ]
+    },
+    {
+      "name": "multi_plate_norm",
+      "display": "Multiplate Normalization",
+      "thresholds": [
+        {
+          "Name": "min-plate-samples",
+          "type": "float",
+          "display": "Samples per plate",
+          "min_value": 1.0,
+          "max_value": 10.0,
+          "default_value": "8.0",
+          "current_value": "8.0",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "Minimum count of samples per plate to enable multiplate normalization for that plate",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "fld-cutoff",
+          "type": "float",
+          "display": "fld-cutoff",
+          "min_value": 0.0,
+          "max_value": 100.0,
+          "default_value": "4.9",
+          "current_value": "4.9",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "For autosomal probesets, minimum acceptable FLD value for cluster separation after multiplate normalization",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        },
+        {
+          "Name": "fld-XChr-cut",
+          "type": "float",
+          "display": "fld-XChr-cut",
+          "min_value": 0.0,
+          "max_value": 100.0,
+          "default_value": "4.9",
+          "current_value": "4.9",
+          "operand": "≥",
+          "operands": [
+            "≥"
+          ],
+          "description": "For non-PAR X probesets, minimum acceptable FLD value for diploid cluster separation after multiplate normalization",
+          "is_visible": true,
+          "enabled": true,
+          "required": true,
+          "advanced": true
+        }
+      ],
+      "workflowKeys": [
+        "automated_qc",
+        "probeset_genotyping"
+      ]
+    }
+  ],
+  "ConfigPath": "C:\\Users\\Public\\Documents\\AxiomAnalysisSuite\\Library\\Axiom_PangenomiX.r1\\Axiom_PangenomiX.r1.v5.ax_thresholds",
+  "analysis_category": "cnvmix_gt"
+}

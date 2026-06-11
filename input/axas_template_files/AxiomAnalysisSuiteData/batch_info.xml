@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<SuitcaseInfo>
+  <Parameter key="FileVersion" value="2.0" />
+  <Parameter key="AASVersion" value="5.4.0.23" />
+  <Parameter key="WorkflowGuid" value="976d039c-fbb6-41c1-84e0-e13b615868c4" />
+  <Parameter key="BatchName" value="positive_samples_260526" />
+  <Parameter key="ChipType" value="Axiom_PangenomiX.r1" />
+  <Parameter key="ArrayTypeName" value="Axiom_PangenomiX" />
+  <Parameter key="ArrayDisplayName" value="Axiom_PangenomiX.r1" />
+  <Parameter key="ArrayTypePackageName" value="Axiom_PangenomiX.r1" />
+  <Parameter key="WorkflowMode" value="Copy Number Discovery:copy_number_discovery:True:True:True:True:AxiomGT1.trustcheck.txt,AxiomGT1.confidences.txt,AxiomGT1.report.txt,AxiomGT1.calls.txt,AxiomGT1.summary.a5,AxiomGT1.snp-posteriors.txt" />
+  <Parameter key="DateCreated" value="5/26/2026 11:17:02 AM" />
+  <Parameter key="Profile" value="junho" />
+  <Parameter key="AnalysisCategory" value="cnvmix_gt" />
+  <Parameter key="BatchId" value="de34cc20-0bde-452b-b320-543619106ce5" />
+  <Parameter key="ReferenceName" value="" />
+  <Parameter key="WorkflowMessages" value="[]" />
+</SuitcaseInfo>
